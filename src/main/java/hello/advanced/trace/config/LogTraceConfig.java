@@ -2,6 +2,7 @@ package hello.advanced.trace.config;
 
 import hello.advanced.trace.logtrace.FieldLogTrace;
 import hello.advanced.trace.logtrace.LogTrace;
+import hello.advanced.trace.logtrace.ThreadLocalLogTrace;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,9 +10,14 @@ import org.springframework.context.annotation.Configuration;
 public class LogTraceConfig {
 
     // Singleton Bean으로 등록
+//    @Bean
+//    public LogTrace logTrace() {
+//        return new FieldLogTrace();
+//    }
+
     @Bean
     public LogTrace logTrace() {
-        return new FieldLogTrace();
+        return new ThreadLocalLogTrace();
     }
 
 }
