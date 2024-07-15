@@ -27,7 +27,7 @@ public class OrderServiceImplV5 implements OrderServiceV5 {
             }
         });
 
-        strategy.execute("OrderService.v4.orderItem()");
+        strategy.execute("OrderService.v5.orderItem()");
 
     }
 

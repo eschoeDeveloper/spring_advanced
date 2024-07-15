@@ -28,7 +28,7 @@ public class OrderRepositoryV5 {
             }
         });
 
-        strategy.execute("OrderRepository.v4.save()");
+        strategy.execute("OrderRepository.v5.save()");
 
     }
 
