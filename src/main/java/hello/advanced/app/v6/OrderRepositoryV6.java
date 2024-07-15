@@ -1,23 +1,27 @@
-package hello.advanced.app.v5;
+package hello.advanced.app.v6;
 
 import hello.advanced.trace.logtrace.LogTrace;
 import hello.advanced.trace.strategy.Strategy;
 import hello.advanced.trace.strategy.StrategyContext;
-import hello.advanced.trace.template.AbstractTemplate;
+import hello.advanced.trace.strategy.template.TraceCallback;
+import hello.advanced.trace.strategy.template.TraceTemplate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 @Slf4j
 @Repository
-@RequiredArgsConstructor
-public class OrderRepositoryV5 {
+public class OrderRepositoryV6 {
 
-    private final LogTrace trace;
+    private final TraceTemplate traceTemplate;
+
+    public OrderRepositoryV6(LogTrace trace) {
+        this.traceTemplate = new TraceTemplate(trace);
+    }
 
     public void save(String itemId) {
 
-        StrategyContext strategy = new StrategyContext(trace, new Strategy<Void>() {
+        traceTemplate.execute("OrderRepository.v6.save()", new TraceCallback<>() {
             @Override
             public Void call() {
                 if(itemId.equals("ex")) {
@@ -27,8 +31,6 @@ public class OrderRepositoryV5 {
                 return null;
             }
         });
-
-        strategy.execute("OrderRepository.v5.save()");
 
     }
 
